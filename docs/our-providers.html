@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Awakenings Mental Health</title> {/* Changed Title */}
+  <title>Our Providers - Awakenings Mental Health</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
@@ -18,7 +18,7 @@
       --theme-blue-static: #27296d; 
       --bg-dark: #1D2021;
       --text-light: #F0F3F4;
-      --secondary-color-for-buttons: #84A98C; /* Can be used if .btn.secondary needs distinct style */
+      --secondary-color-for-buttons: #84A98C; 
     }
     html.dark { 
       --bg-light: var(--bg-dark);
@@ -26,7 +26,8 @@
       --heading-color: var(--text-light); 
     }
     html.dark .testimonial-card { background: #2c3032; }
-    html.dark .card:not(.no-dark-override){ 
+    html.dark .card:not(.no-dark-override),
+    html.dark .provider-profile { 
         background: #272b2c; 
         box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
     }
@@ -50,10 +51,13 @@
     }
     html.dark footer#contact { 
         color: var(--text-light);
-        background-color: var(--primary); /* Darker footer bg for dark mode */
+        background-color: var(--bg-dark); 
     }
-    html.dark footer#contact .footer-text-content a { /* Ensure footer links are styled for dark mode */
+    html.dark footer#contact .footer-text-content a {
         color: var(--accent); 
+    }
+    html.dark .provider-contact strong {
+        color: var(--text-light);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -126,7 +130,7 @@
         color: white; 
     }
     nav .nav-link:hover { color: var(--accent); }
-    #heart-animation { z-index: 1; } /* Lottie heart visible on homepage */
+    #heart-animation { z-index: 1; display: none; } 
 
     h2 { 
       font-family: 'Dancing Script', cursive; font-weight: 600;
@@ -135,13 +139,15 @@
       margin-bottom: 2rem; 
       font-size: 2.2rem; 
     }
-    /* Specific h2s if needed */
-    #testimonials h2, #location h2, #booking h2 { 
+    .provider-section-title { 
+        font-size: 2.5rem; 
+        margin-top: 2rem; 
+    }
+     #location h2, #booking h2 { 
         font-size: 2.2rem; 
         margin-bottom: 2rem; 
         text-align: center; 
     }
-     #location h2 { text-align: center; }
 
     @media (max-width: 480px) {
       header#site-header { padding: 0 0.5rem; }
@@ -158,30 +164,32 @@
         display: flex; align-items: center;
       }
       body.scrolled header#site-header h1 .header-favicon {
-          width: 28px; height: 28px;
-          margin-right: 5px; 
+          width: 24px; height: 24px;
+          margin-right: 4px; 
       }
       body.scrolled header#site-header h1 .title-full { display: none; }
       body.scrolled header#site-header h1 .title-short { display: inline; }
             
-      #services .card header { text-align: center; } 
-      
       header#site-header nav { 
-        gap: 0.25rem; 
+        gap: 0.2rem; 
         right: 0.5rem; 
         flex-shrink: 0; 
       }
       nav .nav-link { 
-        font-size: 0.75rem; 
+        font-size: 0.7rem; 
+        padding: 0.2em 0;
       }
     }
 
     .container { 
-      max-width: 1000px; margin: 0 auto; padding: 2rem 1rem;
+      max-width: 1000px; margin: 0 auto; 
+      padding: 2rem 1rem 100px; /* Added more padding-bottom */
       padding-top: 60vh; 
     }
-    body.scrolled .container { padding-top: 70px; }
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 2rem; align-items: start; margin-bottom: 3rem; }
+    body.scrolled .container { 
+      padding-top: 70px; 
+      /* padding-bottom will be inherited from .container */
+    }
     .card { background: var(--bg-light); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); overflow: hidden; }
     .card.no-dark-override {}
     .card header { 
@@ -190,7 +198,6 @@
       color: white; 
       font-family: 'Dancing Script', cursive; font-weight: 600; font-size: 1.4rem; 
     }
-    #services .card header { text-align: center; }
     .card .content { padding: 1rem; }
     .btn { 
       display: inline-block; 
@@ -209,25 +216,7 @@
         color: var(--theme-blue-static);    
         opacity: 1;
     }
-    .booking-button-container { padding: 1rem; }
-    .separator { display: block; width: 100%; height: 80px; }
-    .separator path { transition: fill .3s; } 
-    .accordion .acc-header { 
-      background: var(--theme-blue-static); 
-      color: white; cursor: pointer; 
-      padding: 1rem; border: none; width: 100%; text-align: left; 
-      outline: none; font-family: 'Inter', sans-serif; 
-      font-weight: 600; font-size: 1.1rem; 
-      transition: background .3s; 
-    }
-    .accordion .acc-header.active { background: var(--accent); }
-    .accordion .acc-header + .acc-body + .acc-header { margin-top: 0.5rem; }
-    .accordion .acc-body { max-height: 0; overflow: hidden; transition: max-height .3s ease; background: white; padding: 0 1rem; }
-    .accordion .acc-body p { padding: 1rem 0; }
     .skeleton { background: #ddd; position: relative; }
-    #testimonials { padding: 2rem 0; }
-    .testimonial-card { background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); font-style: italic; text-align: center; margin-bottom: 1.5rem; max-width: 650px; margin-left: auto; margin-right: auto; }
-    .testimonial-card:last-child { margin-bottom: 0; }
     #to-top { 
       position: fixed; bottom: 2rem; right: 2rem; 
       background: var(--theme-blue-static); 
@@ -242,28 +231,143 @@
         opacity: 1;
     }
     body.scrolled #to-top { opacity: 1; }
-    section#location address { text-align: center; margin-top: 0.5rem; }
-    
+        
+    /* Styles for Our Providers Page */
+    .page-intro {
+        text-align: center;
+        margin-bottom: 3rem;
+        font-size: 1.1rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .provider-profile {
+        background: var(--bg-light); 
+        border-radius: 8px;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        padding: 2rem;
+        margin-bottom: 3rem;
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start; 
+    }
+    .provider-photo-container {
+        flex-shrink: 0;
+        text-align: center; 
+    }
+    .provider-profile img.provider-photo {
+        width: 180px; 
+        height: 180px; 
+        object-fit: cover;
+        border-radius: 50%; 
+        border: 3px solid white;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .provider-info {
+        flex-grow: 1;
+    }
+    .provider-info h3 { 
+        font-family: 'Dancing Script', cursive; 
+        font-weight: 600;
+        color: var(--heading-color);
+        font-size: 1.9rem; 
+        margin-top: 0;
+        margin-bottom: 0.25rem;
+        text-align: left; 
+    }
+    .provider-info .credentials {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9rem;
+        color: var(--accent); 
+        margin-bottom: 1rem;
+        font-style: italic;
+    }
+    .provider-contact { 
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem; 
+        font-family: 'Inter', sans-serif;
+    }
+    .provider-contact p {
+        margin-bottom: 0.35rem;
+        line-height: 1.5;
+    }
+    .provider-contact strong {
+        font-weight: 600;
+        color: var(--text-dark);
+    }
+    .provider-contact a {
+        color: var(--accent);
+        text-decoration: none;
+    }
+    .provider-contact a:hover {
+        text-decoration: underline;
+    }
+    .provider-info p:not(.credentials) { 
+        margin-bottom: 1rem;
+        line-height: 1.7;
+        font-size: 0.95rem;
+        font-family: 'Inter', sans-serif;
+    }
+    .provider-info p:last-child {
+        margin-bottom: 0;
+    }
+    .psychology-today-embed-wrapper { 
+        margin-top: 1.5rem;
+    }
+
+    @media (max-width: 768px) { 
+        .provider-profile {
+            flex-direction: column;
+            align-items: center; 
+        }
+        .provider-photo-container {
+            margin-bottom: 1rem;
+        }
+        .provider-info h3, .provider-info .credentials, .provider-contact { 
+            text-align: center; 
+        }
+        .provider-info p:not(.credentials) { 
+            text-align: left; 
+        }
+        .psychology-today-embed-wrapper { 
+            text-align: center;
+        }
+    }
+    /* End of Styles for Our Providers Page */
+
     footer#contact {
         text-align:center; 
-        padding: 2rem 1rem;
+        padding: 0; 
+        background-image: url('Rectangle Logo.jpg');
+        background-size: contain; 
+        background-position: center center;
+        background-repeat: no-repeat;
         background-color: var(--bg-light); 
         position: relative;
+        min-height: 280px; 
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; 
+        align-items: center;
+        padding-bottom: 1rem; 
+    }
+    .footer-text-content { 
+        background-color: rgba(241, 241, 242, 0.85); 
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        margin: 1rem; 
+        display: inline-block; 
+        max-width: 90%; 
         color: var(--text-dark); 
     }
-    .footer-logo-container { 
-        padding-bottom: 1.5rem;
+    html.dark .footer-text-content { 
+        background-color: rgba(29, 32, 33, 0.85); 
+        color: var(--text-light); 
     }
-    .footer-logo-container img {
-        max-width: 250px; 
-        height: auto;
-        display: block; 
-        margin: 0 auto; 
-    }
-    .footer-text-content p {
+    footer#contact p {
         margin-bottom: 0.5rem;
     }
-    .footer-text-content p:last-child {
+    footer#contact p:last-child {
         margin-bottom: 0;
     }
     footer#contact a {
@@ -284,74 +388,64 @@
       <a href="our-providers.html" class="nav-link" target="_top">Our Providers</a>
       <a href="articles.html" class="nav-link" target="_top">Articles</a>
     </nav>
-    <div id="heart-animation" style="position:absolute; bottom:1rem; right:1rem; width:60px; height:60px;"></div>
+    <div id="heart-animation" style="position:absolute; bottom:1rem; right:1rem; width:60px; height:60px; display: none;"></div>
   </header>
 
   <main class="container">
-    <section id="services" class="grid-2" data-aos="fade-up">
-      <div class="card" data-aos="zoom-in">
-        <header>Individual Therapy</header>
-        <div class="content">
-          <p>Personalized support for anxiety, depression, and life transitions.</p>
+    <h2 class="provider-section-title" data-aos="fade-up">Meet Our Providers</h2>
+    <p class="page-intro" data-aos="fade-up" data-aos-delay="100">
+      At Awakenings Mental Health, our dedicated team of psychiatric mental health nurse practitioners is committed to providing compassionate and comprehensive care. We believe in a collaborative approach, working closely with you to understand your unique needs and develop a personalized treatment plan. Get to know our skilled providers below.
+    </p>
+
+    <section class="provider-profile" data-aos="fade-up" data-aos-delay="200">
+      <div class="provider-photo-container">
+        <img src="Talia Mugshot.png" alt="Talia Sierra, PA-C, DMSc" class="provider-photo">
+      </div>
+      <div class="provider-info">
+        <h3>Talia Sierra</h3>
+        <p class="credentials">PA-C, DMSc</p>
+        <div class="provider-contact">
+            <p><strong>Call or Text:</strong> <a href="tel:2082950297">(208) 295-0297</a></p>
+            <p><strong>Email:</strong> <a href="mailto:talia@awakeningsmentalhealth.com">talia@awakeningsmentalhealth.com</a></p>
+            <p><strong>More About Me:</strong> <a href="https://www.psychologytoday.com/us/psychiatrists/talia-sierra-boise-id/1226261" target="_blank" rel="noopener noreferrer">Psychology Today</a></p>
+        </div>
+        <p>Welcome! Are you ready to embark on your journey to well-being? I provide compassionate, personalized care tailored to meet your unique needs. Mental health can profoundly impact your well-being and I want to help you develop your individual path to healing.</p>
+        <p>As a doctorally trained PA I specialize in understanding the unique nuances of each individual's mental health journey and address concerns such as depression, anxiety, ADHD, bipolar disorder, PTSD, and more. I fully understand the impact mental health disorders can have on all aspects of your life, so reach out and let’s start a conversation!</p>
+        
+        <div class="psychology-today-embed-wrapper">
+            <a href="https://www.psychologytoday.com/profile/1233174" class="sx-verified-seal"></a>
+            <script type="text/javascript" src="https://member.psychologytoday.com/verified-seal.js" data-badge="13" data-id="1233174" data-code="aHR0cHM6Ly93d3cucHN5Y2hvbG9neXRvZGF5LmNvbS9hcGkvdmVyaWZpZWQtc2VhbC9zZWFscy8xMy9wcm9maWxlLzEyMzMxNzQ/Y2FsbGJhY2s9c3hjYWxsYmFjaw==" async defer></script>
         </div>
       </div>
-      <div class="card" data-aos="zoom-in" data-aos-delay="100">
-        <header>Medication Management</header>
-        <div class="content">
-          <p>Expert psychiatric care to optimize your treatment plan.</p>
+    </section>
+
+    <section class="provider-profile" data-aos="fade-up" data-aos-delay="100">
+      <div class="provider-photo-container">
+        <img src="Heidi Mugshot.png" alt="Heidi Posey, PA-C" class="provider-photo">
+      </div>
+      <div class="provider-info">
+        <h3>Heidi Posey</h3>
+        <p class="credentials">PA-C</p>
+        <div class="provider-contact">
+            <p><strong>Call or Text:</strong> <a href="tel:2082950297">(208) 295-0297</a></p>
+            <p><strong>Email:</strong> <a href="mailto:heidi@awakeningsmentalhealth.com">heidi@awakeningsmentalhealth.com</a></p>
+            <p><strong>More About Me:</strong> <a href="https://www.psychologytoday.com/us/psychiatrists/heidi-posey-boise-id/1233174" target="_blank" rel="noopener noreferrer">Psychology Today</a></p>
+        </div>
+        <p>Need to be heard? That is what I am here for. To listen and to explore what hasn't worked, and what has. Regardless of diagnosis, I want to help you with whatever symptoms are affecting you the most, and are your priority to address.</p>
+        <p>I am well versed in psychopharmacology and want my patients to understand and feel comfortable with all our options, from prescription medications, supplements to brief psychotherapy; your situation is unique and your needs are too. Whether it's your first time reaching out, or if you want someone new to explore diagnosis and medications, it can be intimidating. Lets take those next steps together today.</p>
+        <div class="psychology-today-embed-wrapper">
+            <a href="https://www.psychologytoday.com/profile/1233174" class="sx-verified-seal"></a>
+            <script type="text/javascript" src="https://member.psychologytoday.com/verified-seal.js" data-badge="13" data-id="1233174" data-code="aHR0cHM6Ly93d3cucHN5Y2hvbG9neXRvZGF5LmNvbS9hcGkvdmVyaWZpZWQtc2VhbC9zZWFscy8xMy9wcm9maWxlLzEyMzMxNzQ/Y2FsbGJhY2s9c3hjYWxsYmFjaw==" async defer></script>
         </div>
       </div>
     </section>
 
-    <svg class="separator" viewBox="0 0 1200 100" preserveAspectRatio="none"> <path d="M0,0 C300,100 900,0 1200,100 L1200,0 L0,0 Z" fill="var(--bg-light)"/> </svg>
-
-    <section id="testimonials" data-aos="fade-up">
-      <h2>What Our Clients Say</h2>
-      <div class="testimonial-card" data-aos="fade-up">“Awakenings changed my life…” — A. Smith</div>
-      <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">“Professional, caring, and effective.” — J. Doe</div>
-      <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">“I finally feel heard and supported.” — K. Lee</div>
-    </section>
-
-    <svg class="separator" viewBox="0 0 1200 100" preserveAspectRatio="none"> <path d="M0,100 C300,0 900,100 1200,0 L1200,100 L0,100 Z" fill="var(--bg-light)"/> </svg>
-
-    <section id="location" class="grid-2" data-aos="fade-right">
-      <div> 
-        <h2>Our Location</h2> 
-        <address> 
-          6126 W State St #104<br> 
-          Boise, ID 83703 
-        </address> 
-      </div>
-      <iframe class="skeleton lazy-embed" loading="lazy" src="https://maps.google.com/maps?q=6126%20W%20State%20St%20%23104%2C%20Boise%2C%20ID%2083703&t=&z=17&ie=UTF8&iwloc=&output=embed" width="100%" height="250" style="border:0;" allowfullscreen=""> </iframe>
-    </section>
-
-    <svg class="separator" viewBox="0 0 1200 100" preserveAspectRatio="none"> <path d="M0,0 C300,100 900,0 1200,100 L1200,0 L0,0 Z" fill="var(--bg-light)"/> </svg>
-
-    <section id="insurance" data-aos="fade-left">
-      <div class="accordion card">
-        <button class="acc-header">What insurances do you accept?</button> <div class="acc-body"> <p>Blue Cross, Select Health, Pacific Source, Saint Luke's Health Plan, Anthem Blue Cross. Blue Shield, Regence, Aetna, Cash Pay</p> </div>
-        <button class="acc-header">How do I verify coverage?</button> <div class="acc-body"> <p>Contact our office <a href="tel:2082950297" style="color: var(--accent);">(208)295-0297</a></p> </div>
-      </div>
-    </section>
-
-    <svg class="separator" viewBox="0 0 1200 100" preserveAspectRatio="none"> <path d="M0,100 C300,0 900,100 1200,0 L1200,100 L0,100 Z" fill="var(--bg-light)"/> </svg>
-
-    <section id="booking" data-aos="zoom-in-up" style="text-align:center; margin-bottom:3rem;">
-      <h2>Book an Appointment</h2>
-      <div class="booking-button-container"> 
-          <a href="https://www.therapyportal.com/p/awakenings83703/" class="btn" target="_top" rel="noopener noreferrer"> Patient Portal </a>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeeYABYxDoscWL3jH-SNU51X0hgomcb0bEqshRIUnCRg7aSgA/viewform" class="btn secondary" target="_top" rel="noopener noreferrer"> Appointment Interest Form </a>
-      </div>
-    </section>
   </main>
 
   <button id="to-top">▲</button>
 
   <footer id="contact" data-aos="fade-up">
-    <div class="footer-logo-container">
-        <img src="Rectangle Logo.jpg" alt="Awakenings Mental Health Logo">
-    </div>
-    <div class="footer-text-content">
+    <div class="footer-text-content"> 
       <p>© <span id="current-year">2025</span> Awakenings Mental Health</p>
       <p>Questions? <a href="mailto:admin@awakeningsmentalhealth.com">admin@awakeningsmentalhealth.com</a> <a href="tel:2082950297">(208)295-0297</a></p>
     </div>
@@ -366,8 +460,7 @@
 
     try {
         const heartAnimContainer = document.getElementById('heart-animation');
-        // Only load Lottie if the container is intended to be visible
-        if(heartAnimContainer && (typeof heartAnimContainer.style.display === 'undefined' || heartAnimContainer.style.display !== 'none')) { 
+        if(heartAnimContainer && heartAnimContainer.style.display !== 'none') { 
             lottie.loadAnimation({
               container: heartAnimContainer,
               path: 'https://assets7.lottiefiles.com/packages/lf20_heart.json', 
@@ -413,6 +506,14 @@
     applySystemTheme(prefersDarkScheme.matches); 
     prefersDarkScheme.addEventListener('change', (e) => { 
         applySystemTheme(e.matches);
+    });
+    
+    window.addEventListener('load', function() {
+      if (typeof AOS !== 'undefined') {
+        setTimeout(function() {
+          AOS.refreshHard(); 
+        }, 1200); // Increased delay
+      }
     });
 
     const accordionHeaders = document.querySelectorAll('.accordion .acc-header');
