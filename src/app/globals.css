@@ -1,0 +1,1393 @@
+/* Fallback: ensure content is visible even if AOS doesn't load */
+[data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+:root {
+  --primary: #2F3E46;
+  --accent: #d96b4c;          /* darker for AA contrast              */
+  --bg-light: #f1f1f2;
+  --text-dark: #1c1c1c;
+  --heading-color: #27296d;
+  --theme-blue-static: #27296d;
+
+  --bg-dark: #1D2021;
+  --text-light: #ececf0;
+  --text-bg-light: #386dc9;
+  --text-bg-dark: #27296d;
+
+  /* new design-token additions */
+  --radius: 0.75rem;
+  --shadow-elevated: 0 4px 12px rgba(0,0,0,.05);
+
+  /* smooth theme switching */
+  transition: background .25s,color .25s;
+}
+
+html.dark {
+  --bg-light: var(--bg-dark);
+  --text-dark: var(--text-light);
+  --heading-color: var(--text-light);
+  --text-bg-light: var(--text-bg-dark);
+  transition: background .25s,color .25s;
+}
+
+html.dark .testimonial-card { background: #2c3032; }
+html.dark .card:not(.no-dark-override){ 
+    background: #272b2c; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
+}
+html.dark .card header,
+html.dark .accordion .acc-header,
+html.dark .btn, html.dark .btn.secondary, 
+html.dark #to-top {
+    background: var(--theme-blue-static); 
+    color: white; 
+}
+html.dark .accordion .acc-header.active {
+    background: var(--accent);
+}
+html.dark .accordion .acc-body { background: #2c3032; }
+html.dark .skeleton { background: #444; }
+html.dark .separator path { fill: var(--bg-dark); } 
+
+html.dark .btn:active, html.dark .btn.secondary:active, html.dark #to-top:active {
+    background-color: var(--bg-dark); 
+    color: var(--text-light);    
+}
+html.dark footer#contact { 
+    color: var(--text-light);
+    background-color: var(--bg-dark); 
+}
+html.dark footer#contact .footer-text-content a {
+    color: var(--accent); 
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', sans-serif; 
+  background: var(--bg-light); color: var(--text-dark);
+  line-height: 1.6; transition: background .3s, color .3s;
+  overflow-x: hidden; 
+}
+/* ===========================================
+   HEADER STYLES - Simple Fixed Header
+   =========================================== */
+
+.header {
+  --header-height: 90px;
+  --header-bg: var(--theme-blue-static);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background-color: var(--header-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+/* Hidden background layer - can be enabled later */
+.header-bg {
+  display: none;
+}
+
+/* Header content container */
+.header-content {
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+}
+
+/* Brand/Logo */
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: opacity 0.2s ease;
+}
+
+.header-brand:hover {
+  opacity: 0.9;
+}
+
+.header-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+}
+
+.header-title {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.header-title-main {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.85rem;
+  font-weight: 600;
+}
+
+.header-title-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.header-nav .nav-link {
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  transition: background 0.2s ease;
+}
+
+.header-nav .nav-link:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+  display: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  padding: 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Hamburger Icon */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 22px;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 4px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--header-bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  flex-direction: column;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.mobile-nav.open {
+  max-height: 300px;
+}
+
+.mobile-nav .nav-link {
+  display: block;
+  padding: 1rem 1.5rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.2s ease;
+}
+
+.mobile-nav .nav-link:last-child {
+  border-bottom: none;
+}
+
+.mobile-nav .nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   Mobile Styles (< 768px)
+   ============================================ */
+@media (max-width: 768px) {
+  .header-content {
+    padding: 0 1rem;
+  }
+
+  .header-logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .header-title-main {
+    font-size: 1.25rem;
+  }
+
+  .header-title-sub {
+    font-size: 0.7rem;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .mobile-nav {
+    display: flex;
+  }
+}
+
+/* Dark mode - header stays the same */
+html.dark .header {
+  background-color: var(--header-bg);
+}
+
+/* Ensure content doesn't hide behind fixed header */
+.container {
+  padding-top: calc(var(--header-height, 90px) + 2rem);
+}
+
+/* ===========================================
+   HERO SECTION
+   =========================================== */
+
+.hero {
+  /* Break out of .container */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-top: calc(-1 * (var(--header-height, 90px) + 2rem)); /* negate container padding-top */
+
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--header-height, 90px) + 2rem) 1.5rem 2rem;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/uuunion.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  transform: scaleX(1.2);
+}
+
+.hero-content {
+  max-width: 800px;
+  text-align: center;
+  z-index: 1;
+}
+
+.hero-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 2rem;
+  line-height: 1.7;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.hero-cta .btn {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero-cta .btn.secondary {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero-cta .btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.hero-badges .badge {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Dark mode hero adjustments */
+html.dark .hero-bg {
+  opacity: 0.85;
+}
+
+/* Mobile hero adjustments */
+@media (max-width: 768px) {
+  .hero {
+    height: 100svh;
+    padding: calc(var(--header-height, 90px) + 1rem) 1rem 1.5rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .hero-badges {
+    gap: 0.5rem;
+  }
+
+  .hero-badges .badge {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+h2 {
+font-family: 'Dancing Script', cursive; font-weight: 600;
+color: var(--text-light);
+background-color: var(--text-bg-light);
+margin-bottom: 2rem;
+font-size: clamp(1.75rem, 3vw + 1rem, 2.4rem);
+padding: 0.75rem 1.25rem;
+border-radius: 10px;
+box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+margin-top: 1rem;
+margin-bottom: 1rem;
+text-align: center;
+}
+
+/* Styles for provider contact elements */
+
+/* For an ANCHOR or BUTTON element that IS a provider-contact button */
+a.provider-contact,
+button.provider-contact {
+  display: inline-block;
+  background-color: var(--accent);
+  color: white !important; /* Button text is white */
+  padding: 0.6em 1.2em;
+  border-radius: 20px; /* Pill shape */
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0.3rem 0.5rem; /* Spacing around buttons */
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+a.provider-contact:hover,
+a.provider-contact:focus,
+button.provider-contact:hover,
+button.provider-contact:focus {
+  background-color: #C05F3E; /* Darker than light mode --accent */
+  color: white !important;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+/* For links INSIDE a DIV that has class .provider-contact (e.g., on our-providers.html) */
+/* The div.provider-contact container itself will NOT get the button styling from above. */
+div.provider-contact a,
+div.provider-contact a:visited {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+div.provider-contact a:hover,
+div.provider-contact a:focus {
+  color: var(--primary); /* Darker color on hover/focus */
+  text-decoration: underline;
+}
+
+html.dark a.provider-contact:hover,
+html.dark a.provider-contact:focus,
+html.dark button.provider-contact:hover,
+html.dark button.provider-contact:focus {
+  background-color: #a04d2c; /* Darker than dark mode --accent #c05e3d */
+  color: white !important;
+  text-decoration: none;
+  /* transform: translateY(-2px); is inherited */
+}
+
+h3 {
+font-family: 'Dancing Script', cursive;
+font-weight: 600;
+font-size: clamp(1.4rem,  2vw + 1rem, 1.8rem);
+color: var(--text-dark); /* Light text for dark background */
+background-color: var(--bg-light); /* Dark background */
+padding: 0.75rem 1.25rem;
+border-radius: 6px;
+box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Drop shadow */
+border-bottom: 3px solid var(--theme-blue-static); /* Line matching h1 text color */
+margin-top: 2rem; /* Space above */
+margin-bottom: 1.5rem; /* Space below (after border) */
+text-align: center; /* Consistent with h2 */
+}
+#testimonials h2, #location h2, #booking h2, 
+#services h2, 
+#insurance h2 { 
+    font-size: 2.2rem; 
+    margin-bottom: 2rem; 
+    text-align: center; 
+}
+#location h2 { text-align: center; }
+
+/* All specific nav-link font sizes for desktop scrolled are removed, base 1.6rem applies */
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 100px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.grid-3 {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem;  align-items: start; margin-bottom: 3rem;
+}
+
+@media (max-width: 900px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr); /* Adapt to 2 columns on tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-3 {
+    grid-template-columns: 1fr; /* Stack to 1 column on phones */
+  }
+}
+/* Card component */
+.card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-elevated);
+    padding: 2rem;
+}
+.card.no-dark-override {}
+.card header { 
+  padding: 1rem; 
+  background: var(--theme-blue-static); 
+  color: white; 
+  font-family: 'Dancing Script', cursive; font-weight: 600; font-size: 1.4rem; 
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+#services .card header { text-align: center; } 
+#services .card {
+    background-color: var(--theme-blue-static);
+}
+#services .card .content p,
+#services .card .content { 
+   background-color: var(--text-bg-light);/* Ensure text within content div is also white */
+   color: white;
+   border-radius: 8px;
+}
+
+html.dark #services .card {
+    background-color: var(--theme-blue-static); /* Override general dark mode card background */
+}
+html.dark #services .card .content p,
+html.dark #services .card .content {
+    background-color: var(--text-bg-dark);
+    color: white; 
+    border-radius: 8px;/* Ensure text is readable in dark mode */
+}
+.card .content { padding: 1rem; }
+/* Buttons */
+.btn,
+.btn.secondary {
+    display: inline-block;
+    border-radius: var(--radius);
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    /* Existing styles to merge/adapt */
+    background: var(--theme-blue-static); 
+    color: white; 
+    text-decoration: none; 
+    margin: 0.5rem; 
+    transition: background-color .2s, color .2s, opacity .3s, transform .2s; /* Added transform */
+}
+.btn:hover,
+.btn.secondary:hover {
+    background-color: #1e2157; /* Darker shade of --theme-blue-static */
+    transform: translateY(-2px);
+    /* opacity: .9; -- Replaced by color change */
+}
+.btn:active {
+    transform: scale(.98);          /* tactile feedback */
+    /* Merge existing active styles */
+    background-color: var(--bg-light); 
+    color: var(--theme-blue-static);    
+    opacity: 1;
+}
+/* Ensure .btn.secondary:active also gets the tactile feedback if desired, or specific styles */
+.btn.secondary:active {
+    transform: scale(.98);
+    background-color: var(--bg-light); 
+    color: var(--theme-blue-static);    
+    opacity: 1;
+}
+
+.btn-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem; /* Space between icon and text */
+  background-color: var(--theme-blue-static);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color .2s, color .2s, opacity .3s, transform .2s;
+  margin-top: 0.5rem; /* Added margin for spacing if it's below text */
+  margin-bottom: 0.5rem; /* Added margin for spacing */
+}
+
+.btn-social svg {
+  fill: white; /* Ensure icon is visible on button background */
+  width: 1.2em; /* Adjust size as needed */
+  height: 1.2em; /* Adjust size as needed */
+  vertical-align: middle; /* Better alignment with text */
+}
+
+.btn-social:hover {
+  /* opacity: .9; -- Replaced by more specific hover */
+  background-color: #1e2157; /* Slightly darker blue for hover */
+  transform: translateY(-2px);
+}
+
+.btn-social:active {
+  transform: scale(.98);
+  background-color: var(--bg-light); 
+  color: var(--theme-blue-static); 
+}
+
+html.dark .btn-social {
+  background-color: var(--theme-blue-static); 
+  color: white;
+}
+
+html.dark .btn-social svg {
+  fill: white;
+}
+
+html.dark .btn-social:hover {
+  opacity: .9;
+  background-color: #1e2157; /* Slightly darker blue for hover */
+}
+
+html.dark .btn-social:active {
+  background-color: var(--bg-dark); 
+  color: var(--accent); 
+}
+.booking-button-container { padding: 1rem; }
+.separator { display: block; width: 100%; height: 80px; }
+.separator path { transition: fill .3s; } 
+.accordion .acc-header { 
+  background: var(--theme-blue-static); 
+  color: white; cursor: pointer; 
+  padding: 1rem; border: none; width: 100%; text-align: left; 
+  outline: none; font-family: 'Inter', sans-serif; 
+  font-weight: 600; font-size: 1.1rem; 
+  transition: background .3s; 
+}
+.accordion .acc-header.active { background: var(--accent); }
+.accordion .acc-header + .acc-body + .acc-header { margin-top: 0.5rem; }
+.accordion .acc-body { max-height: 0; overflow: hidden; transition: max-height .3s ease; background: white; padding: 0 1rem; }
+.accordion .acc-body p { padding: 1rem 0; }
+.skeleton { background: #ddd; position: relative; }
+/* ===========================================
+   TESTIMONIAL CAROUSEL - Stacked Card Deck
+   =========================================== */
+
+.testimonial-section {
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.testimonial-section h2 {
+  margin-bottom: 0.5rem;
+}
+
+.testimonial-hint {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  opacity: 0.7;
+  margin-bottom: 2rem;
+}
+
+.testimonial-deck {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 280px;
+  margin: 0 auto 2rem;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.testimonial-deck .testimonial-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.5s ease,
+              box-shadow 0.3s ease;
+  will-change: transform, opacity;
+}
+
+.testimonial-deck .testimonial-card blockquote {
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-dark);
+  margin: 0 0 1rem 0;
+}
+
+.testimonial-deck .testimonial-card cite {
+  display: block;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+/* Slide out animation */
+.testimonial-deck .testimonial-card.slide-out {
+  transform: translateX(-120%) rotate(-8deg) !important;
+  opacity: 0 !important;
+}
+
+/* Hover effect on top card only */
+.testimonial-deck .testimonial-card:first-child:not(.slide-out):hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+/* Dots indicator */
+.testimonial-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.testimonial-dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--theme-blue-static);
+  opacity: 0.3;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.testimonial-dots .dot.active {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* Dark mode */
+html.dark .testimonial-deck .testimonial-card {
+  background: #2c3032;
+}
+
+html.dark .testimonial-deck .testimonial-card blockquote {
+  color: var(--text-light);
+}
+
+html.dark .testimonial-dots .dot {
+  background: var(--text-light);
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .testimonial-deck {
+    height: 320px;
+  }
+
+  .testimonial-deck .testimonial-card {
+    padding: 1.5rem;
+  }
+
+  .testimonial-deck .testimonial-card blockquote {
+    font-size: 0.95rem;
+  }
+}
+
+/* Legacy testimonial styles - kept for backwards compatibility */
+#testimonials { padding: 2rem 0; display: none; }
+.testimonial-card:not(.testimonial-deck .testimonial-card) {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#to-top { 
+  position: fixed; bottom: 2rem; right: 2rem; 
+  background: var(--theme-blue-static); 
+  border: none; color: white; 
+  padding: 0.75rem; border-radius: 50%; font-size: 1.2rem; 
+  cursor: pointer; opacity: 0; 
+  transition: background-color .2s, opacity .3s, transform .2s; 
+  z-index: 10001; 
+}
+
+#to-top:hover {
+  background-color: #1e2157; /* Darker shade of --theme-blue-static */
+  transform: translateY(-2px);
+  opacity: 1; /* Ensure visible on hover */
+}
+#to-top:active { 
+    background-color: var(--bg-light); 
+    color: var(--theme-blue-static);    
+    opacity: 1;
+}
+body.scrolled #to-top { opacity: 1; } 
+section#location address { text-align: center; margin-top: 0.5rem; }
+
+footer#contact {
+    text-align:center; 
+    padding: 2.5rem 1rem 2rem; /* Increased padding for better spacing with shadow */
+    background-color: var(--bg-light); 
+    position: relative;
+    color: var(--text-dark); 
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.08); /* Added drop shadow to the top edge */
+    border-top: 1px solid rgba(0,0,0,0.05); /* Subtle top border */
+}
+.footer-logo-container { 
+    margin-bottom: 2rem; /* Increased margin */
+}
+.footer-logo-container img {
+    max-width: 220px; /* Slightly smaller for balance */
+    height: auto;
+    display: block; 
+    margin: 0 auto; 
+    border-radius: 8px; /* Rounded corners for the logo */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* Subtle drop shadow for the logo */
+}
+.footer-text-content { 
+    padding: 0; 
+}
+html.dark footer#contact { 
+    background-color: var(--bg-dark); 
+    color: var(--text-light); 
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.25); /* Dark mode shadow */
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+html.dark .footer-logo-container img {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3); /* Dark mode logo shadow */
+}
+
+footer#contact p {
+    margin-bottom: 0.75rem; /* Increased spacing */
+}
+footer#contact p:last-child {
+    margin-bottom: 0;
+}
+
+/* Styling for footer links to look like buttons */
+footer#contact .footer-text-content a {
+    display: inline-block;
+    background-color: var(--accent);
+    color: white !important; /* Ensure text is white */
+    padding: 0.6em 1.2em;
+    border-radius: 20px; /* Pill shape */
+    text-decoration: none;
+    font-weight: 500;
+    margin: 0.3rem 0.5rem; /* Spacing around buttons */
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+footer#contact .footer-text-content a:hover {
+    background-color: #D46A4F; /* Darker accent on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+footer#contact .footer-text-content a:active {
+    background-color: #C05F3E; /* Even darker on active */
+    transform: translateY(0px);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+html.dark footer#contact .footer-text-content a {
+    background-color: var(--primary); /* Different button color for dark mode */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+html.dark footer#contact .footer-text-content a:hover {
+    background-color: #4A5C66; /* Darker primary on hover */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.35);
+}
+
+html.dark footer#contact .footer-text-content a:active {
+    background-color: #243036; 
+}
+/* End of footer link button styling */
+
+/* Content Capsule Style */
+.content-capsule {
+  background-color: var(--bg-light);
+  padding-top: 1.5rem; padding-bottom: 1.5rem; padding-left: 1.2rem; padding-right: 1.2rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.75rem; /* Space below the capsule */
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+html.dark .content-capsule {
+  background-color: #2c3032; /* Slightly different from main dark bg for contrast */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Services section with arrow background */
+.services-wrapper {
+  position: relative;
+  overflow: visible;
+}
+
+.services-bg-arrow {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  width: 1400px;
+  height: 1400px;
+  background-image: url('/images/pppointed.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.95;
+  z-index:-10;
+  pointer-events: none;
+}
+
+.services-wrapper #services {
+  position: relative;
+  z-index: 1;
+}
+
+/* End of Content Capsule Style */
+
+/* Style for rounded map iframe */
+.map-iframe-rounded {
+  border-radius: 8px;
+  overflow: hidden; /* Ensures the content inside respects the border-radius */
+}
+
+/* Styles for "How do I verify coverage?" accordion content */
+.verify-coverage-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Adjust gap as needed */
+  padding: 1rem 0; /* Match existing p padding inside acc-body */
+}
+
+.verify-coverage-content p {
+  margin: 0; /* Remove default paragraph margin if any */
+  padding: 0; /* Remove default paragraph padding if any */
+}
+
+/* Styles for Provider Page Enhancements */
+.provider-specialties {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.provider-specialties h4 {
+  font-family: 'Inter', sans-serif; /* Match other subheadings */
+  font-size: 1.2rem; /* Slightly larger for emphasis */
+  color: var(--heading-color);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.provider-specialties ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem; /* Spacing between tags */
+}
+
+.provider-specialties li {
+  background-color: var(--accent);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px; /* Pill shape */
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+html.dark .provider-specialties h4 {
+  color: var(--text-light);
+}
+
+html.dark .provider-specialties li {
+  background-color: var(--primary); /* Dark mode tag color */
+  /* color: var(--text-light); /* Ensure text is readable - white is fine */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.btn-provider-action {
+  display: inline-block;
+  background: var(--accent);
+  color: white !important; /* Ensure text color overrides any link styles */
+  padding: 0.8rem 1.6rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 1rem;
+  text-align: center;
+  transition: background-color .2s, opacity .3s, transform .2s;
+  border: none; /* Ensure it looks like a button */
+  cursor: pointer;
+}
+
+.btn-provider-action:hover {
+  /* opacity: .85; -- Removed for clearer color change */
+  background-color: #D46A4F; /* Darker than light --accent */
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+.btn-provider-action:active {
+  background-color: var(--bg-light);
+  color: var(--accent) !important;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html.dark .btn-provider-action {
+  background: var(--accent);
+}
+
+html.dark .btn-provider-action:hover {
+  background-color: #a04d2c; /* Darker than dark mode --accent #c05e3d */
+  /* transform is inherited */
+}
+
+html.dark .btn-provider-action:active {
+  background-color: var(--bg-dark);
+  color: var(--accent) !important;
+}
+/* End of Styles for Provider Page Enhancements */
+
+/* Old mobile menu styles removed - using new .mobile-menu-btn in header CSS */
+
+/* …——— EXISTING RESET / BASE / LAYOUT RULES REMAIN UNCHANGED ——… */
+
+/* Navigation */
+/* Note: Existing nav .nav-link and .scrolled-header-layout nav .nav-link are more specific for header context.
+   These new .nav-link styles might be for other navigation elements or a general fallback. */
+.nav-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    text-decoration: none;
+}
+.nav-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+.nav-link.scrolled { /* This seems specific to a non-header nav that can be scrolled */
+    background: rgba(255,255,255,.35);
+    backdrop-filter: blur(6px);
+}
+
+/* Typography — fluid with clamp() */
+/* Note: h2 and h3 were updated previously. This h1 is a general one. */
+h1 { font-size: clamp(2.2rem, 4vw + 1rem, 3.2rem); }
+/* h2 and h3 are already defined with clamp elsewhere */
+
+/* Natural vertical rhythm helper */
+.flow > * + * { margin-top: var(--flow-space, 1.5rem); }
+
+/* Aspect-ratio utility */
+.ratio-16x9 { aspect-ratio: 16/9; width: 100%; }
+
+/* Elevated shadows consolidated */
+/* Note: Some of these might already have shadows, this standardizes them or adds to new elements */
+.testimonial-card, /* Already has shadow, this might update it or be redundant if var(--shadow-elevated) is same as old */
+#to-top, /* Already has shadow */
+.accordion .acc-header, /* Already has background, this adds/standardizes shadow */
+html.dark .card:not(.no-dark-override){ /* This selector is already defined for dark mode background, this adds shadow var */
+    box-shadow: var(--shadow-elevated);
+}
+/* ---------- “Stacked-card” effect for testimonials ---------- */
+#testimonials {          /* keep cards centered */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;    /* gives us a containing block for z-index */
+}
+
+/* every card must be positioned so it can overlap the next one */
+#testimonials .testimonial-card{
+  position: relative;    /* new stacking context */
+  margin: 0;             /* override old bottom margin */
+  transition: transform .25s cubic-bezier(.4,0,.2,1),
+              box-shadow .25s;
+}
+
+/* pull each following card upward so the edges peek out */
+#testimonials .testimonial-card + .testimonial-card{
+  margin-top: -8rem;  /* overlap amount – adjust to taste */
+}
+
+/* layer order: first card sits on top of the pile */
+/* #testimonials .testimonial-card:nth-child(1){ z-index:3; }
+#testimonials .testimonial-card:nth-child(2){ z-index:2; }
+#testimonials .testimonial-card:nth-child(3){ z-index:1; } */
+
+/* optional playful tilt so the cards look “loose” */
+#testimonials .testimonial-card:nth-child(odd){  transform: rotate(-0.5deg); }
+#testimonials .testimonial-card:nth-child(even){ transform: rotate( 0.5deg); }
+
+/* on hover, pop the card forward a bit */
+#testimonials .testimonial-card:hover{
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0,0,0,.3);
+  z-index: 4;           /* rise above its neighbours */
+}
+
+
+/* Subtle card hover */
+.card:hover {
+    transform: scale(1.02);
+    transition: transform .2s cubic-bezier(.4,0,.2,1);
+}
+
+/* Header shrink animation with Scroll-Timeline */
+@keyframes shrink {
+  0%   { --logo-scale: 1;   --nav-alpha: 0; }
+  100% { --logo-scale: .55; --nav-alpha: 1; }
+}
+/* ─── Interactive deck behaviour ────────────────────────────── */
+
+/* make the whole stack feel tappable / clickable */
+#testimonials { cursor: pointer; }
+
+/* pop-forward on hover – but **only** if the card is NOT leaving */
+#testimonials .testimonial-card:not(.slide-out):hover{
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0,0,0,.12);
+}
+
+#testimonials .testimonial-card:first-of-type:not(.slide-out):hover{
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0,0,0,.12);
+}
+
+#testimonials .testimonial-card.slide-out{
+  transition: transform .45s cubic-bezier(.4,0,.2,1), opacity .45s;
+  transform: translateX(-120%) rotate(-4deg);
+  opacity: 0;
+  pointer-events: none;           /* already in your file */
+}
+
+#testimonials .testimonial-card:nth-child(1) {
+  filter: brightness(1);
+}
+#testimonials .testimonial-card:nth-child(2) {
+  filter: brightness(0.92);
+}
+#testimonials .testimonial-card:nth-child(3) {
+  filter: brightness(0.84);
+}
+#testimonials .testimonial-card:nth-child(n+4) {
+  filter: brightness(0.76);
+}
+
+
+header#site-header { /* Applying animation to existing header */
+  animation: shrink auto linear both;
+  animation-timeline: scroll(root block);
+  animation-range: 0 200px;
+  /* Ensure this doesn't conflict with existing transitions on header#site-header */
+  /* Existing: transition: box-shadow 0.15s ease, height 0.05s ease; */
+  /* It's generally okay for animations and transitions to co-exist but be mindful of property conflicts */
+}
+
+
+/* Reduced-motion preferences respected */
+@media (prefers-reduced-motion: reduce) {
+  .animated { transition: none !important; }
+  /* Also consider disabling animations if .animated is not the only class used for animations */
+  header#site-header {
+    animation: none !important;
+  }
+  .card:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+   /* Add other elements with transitions/animations here if needed */
+}
+
+/* Dark-mode accent tint refinement */
+html.dark {
+  --accent: #c05e3d;
+}
+
+/* OLD MOBILE HEADER STYLES - Removed, using new .header CSS above */
+/* ================================
+   Download-PDF button styling only
+   (targets any <a> element that uses
+   the download attribute, e.g.
+   <a href="foo.pdf" download>…</a>)
+   ================================ */
+
+a[download] {
+  background: #ffffff;
+  border: solid 1px #e6e6e6;
+  border-radius: 2px;
+  display: inline-block;
+  height: 100px;
+  line-height: 100px;
+  margin: 5px;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 100px;
+}
+
+a[download] span {
+  background: #f2594b;
+  border-radius: 4px;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: normal;
+  padding: 5px 10px;
+  position: relative;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+a[download] span:last-child {
+  margin-left: -20px;
+}
+
+a[download]::before,
+a[download]::after {
+  background: #ffffff;
+  border: solid 3px #9fb4cc;
+  border-radius: 4px;
+  content: '';
+  display: block;
+  height: 35px;
+  left: 50%;
+  margin: -17px 0 0 -12px;
+  position: absolute;
+  top: 50%;
+  width: 25px;
+}
+
+a[download]:hover::before,
+a[download]:hover::after {
+  background: #e2e8f0;
+}
+
+a[download]::before {           /* slightly offset top “paper” */
+  margin: -23px 0 0 -5px;
+}
+
+a[download]:hover {
+  background: #e2e8f0;
+  border-color: #9fb4cc;
+}
+
+a[download]:active {
+  background: #dae0e8;
+  box-shadow: inset 0 2px 2px rgba(0,0,0,.25);
+}
+
+a[download] span:first-child {  /* hidden until hover */
+  display: none;
+}
+
+a[download]:hover span:first-child {
+  display: inline-block;
+}
+
+a[download]:hover span:last-child {
+  display: none;
+}
+
+/* Ensure the H1 link inherits text color and has no underline */
+.header-title-link {
+color: inherit; /* Inherit color from the parent h1 */
+text-decoration: none; /* Remove underline */
+}
+
+.header-title-link:hover,
+.header-title-link:focus,
+.header-title-link:active {
+color: inherit; /* Keep inherited color on hover/focus/active */
+text-decoration: none; /* Keep no underline on hover/focus/active */
+}
+
+/* Provider Page Styles */
+.provider-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background-color: var(--bg-light);
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+html.dark .provider-profile {
+  background-color: var(--bg-dark);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.provider-photo-container {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.provider-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--theme-blue-static);
+}
+
+.provider-info {
+  flex-grow: 1;
+}
+
+.provider-info h3 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  color: var(--heading-color);
+  margin-bottom: 0.25rem;
+}
+
+.provider-info .credentials {
+  font-style: italic;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.provider-contact-info p {
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.psychology-today-embed-wrapper {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .provider-profile {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .provider-photo-container {
+    text-align: left;
+  }
+  .psychology-today-embed-wrapper {
+    text-align: left;
+  }
+}
