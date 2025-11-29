@@ -34,7 +34,7 @@ export default function Articles() {
           </a>
         </p>
 
-        <div className="grid-3" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
+        <div className="grid-2">
           <div className="card" data-aos="zoom-in-up" data-aos-delay="200" style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: '420px' }}>
             <div style={{ width: '100%', height: '200px', overflow: 'hidden' }}>
               <img src="/images/light-box.webp" alt="Light therapy box" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
@@ -69,9 +69,11 @@ export default function Articles() {
           <p data-aos="fade-up" data-aos-delay="100" style={{ textAlign: 'center' }}>
             Awakenings occasionally releases downloadable factsheets for supplements we commonly suggest for our patients. These are a good source of general information, but please consult with your provider before making any changes in medication. Supplement information is not intended to be a replacement for medication.
           </p>
-          <a href="/pdfs/l-methylfolate.pdf" download><span>PDF Download</span><span>L-Methylfolate</span></a>
-          <a href="/pdfs/omega3s.pdf" download><span>PDF Download</span><span>Omega3</span></a>
-          <a href="/pdfs/Square Bright Light Therapy Information Sheet.pdf" download><span>PDF Download</span><span>Light Therapy</span></a>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem', width: '100%' }}>
+            <a href="/pdfs/l-methylfolate.pdf" download style={{ flex: '1 1 calc(33.333% - 0.5rem)', minWidth: '40px', maxWidth: '100px' }}><span>PDF Download</span><span>L-Methylfolate</span></a>
+            <a href="/pdfs/omega3s.pdf" download style={{ flex: '1 1 calc(33.333% - 0.5rem)', minWidth: '40px', maxWidth: '100px' }}><span>PDF Download</span><span>Omega3</span></a>
+            <a href="/pdfs/Square Bright Light Therapy Information Sheet.pdf" download style={{ flex: '1 1 calc(33.333% - 0.5rem)', minWidth: '40px', maxWidth: '100px' }}><span>PDF Download</span><span>Light Therapy</span></a>
+          </div>
         </div>
         <p style={{ textAlign: 'center', marginTop: '2rem', fontSize: '0.9rem', color: 'var(--text-dark)' }} data-aos="fade-up" data-aos-delay="400"> Disclaimer: None of the information in any of these articles should be considered as medical advice. If you have an emergency, please call 911. </p>
       </section>

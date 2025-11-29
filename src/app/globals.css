@@ -531,6 +531,20 @@ text-align: center; /* Consistent with h2 */
   padding-right: 1rem;
 }
 
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 600px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
 .grid-3 {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem;  align-items: start; margin-bottom: 3rem;
 }
@@ -1240,7 +1254,7 @@ html.dark {
 a[download] {
   background: #ffffff;
   border: solid 1px #e6e6e6;
-  border-radius: 2px;
+  border-radius: 4px;
   display: inline-block;
   height: 100px;
   line-height: 100px;

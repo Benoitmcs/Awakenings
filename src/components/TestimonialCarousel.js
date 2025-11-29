@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 
 const testimonials = [
   {
@@ -24,8 +24,10 @@ export default function TestimonialCarousel() {
   const [cards, setCards] = useState(testimonials);
   const [isAnimating, setIsAnimating] = useState(false);
   const [exitingId, setExitingId] = useState(null);
+  const touchStartX = useRef(null);
+  const touchStartY = useRef(null);
 
-  const handleClick = useCallback(() => {
+  const cycleCards = useCallback(() => {
     if (isAnimating) return;
 
     setIsAnimating(true);
@@ -42,12 +44,39 @@ export default function TestimonialCarousel() {
     }, 500);
   }, [isAnimating, cards]);
 
+  const handleTouchStart = useCallback((e) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  }, []);
+
+  const handleTouchEnd = useCallback((e) => {
+    if (touchStartX.current === null) return;
+
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const deltaX = touchStartX.current - touchEndX;
+    const deltaY = Math.abs(touchStartY.current - touchEndY);
+
+    // Swipe threshold of 50px, and horizontal swipe should be greater than vertical
+    if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > deltaY) {
+      cycleCards();
+    }
+
+    touchStartX.current = null;
+    touchStartY.current = null;
+  }, [cycleCards]);
+
   return (
     <section className="testimonial-section">
       <h2>What People Are Saying</h2>
-      <p className="testimonial-hint">Click the cards to see more!</p>
+      <p className="testimonial-hint">Tap or swipe to see more!</p>
 
-      <div className="testimonial-deck" onClick={handleClick}>
+      <div
+        className="testimonial-deck"
+        onClick={cycleCards}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         {cards.map((testimonial, index) => (
           <div
             key={testimonial.id}

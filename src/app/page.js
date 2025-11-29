@@ -29,17 +29,17 @@ export default function Home() {
       </section>
 
       <div style={{ paddingTop: '4rem' }}>
-      <div className="content-capsule services-wrapper">
-        <div className="services-bg-arrow" aria-hidden="true"></div>
-        <section id="services" data-aos="fade-up" style={{ textAlign: 'center' }}>
-          <h2>Medication Management</h2>
-          <div className="content" style={{ textAlign: 'center' }}>
-            <p className="page-intro" data-aos="fade-up">
-              Awakenings started in 2023 with the goal of providing better service to our patients than we could at big generic clinics. Located right off of state street, both of our providers are available for in person or for tele-health visits. Our providers are both a little bit different in their styles, but whatever your needs may be, our goal is to always provide you with the highest quality care. We specialize in treating a large variety of mental health concerns from anxiety and depression to ADHD, PTSD, and more.
-            </p>
-          </div>
-        </section>
-      </div>
+        <div className="content-capsule services-wrapper">
+          <div className="services-bg-arrow" aria-hidden="true"></div>
+          <section id="services" data-aos="fade-up" style={{ textAlign: 'center' }}>
+            <h2>Medication Management</h2>
+            <div className="content" style={{ textAlign: 'center' }}>
+              <p className="page-intro" data-aos="fade-up">
+                Awakenings started in 2023 with the goal of providing better service to our patients than we could at big generic clinics. Located right off of state street, both of our providers are available for in person or for tele-health visits. Our providers are both a little bit different in their styles, but whatever your needs may be, our goal is to always provide you with the highest quality care. We specialize in treating a large variety of mental health concerns from anxiety and depression to ADHD, PTSD, and more.
+              </p>
+            </div>
+          </section>
+        </div>
       </div>
 
       <div style={{ padding: '4rem 0' }}>
@@ -63,7 +63,7 @@ export default function Home() {
               loading="lazy"
               src="https://maps.google.com/maps?q=6126%20W%20State%20St%20%23104%2C%20Boise%2C%20ID%2083703&t=&z=17&ie=UTF8&iwloc=&output=embed"
               width="100%"
-              height="250"
+              height="325"
               style={{ border: 0 }}
               allowFullScreen=""
             />
@@ -82,8 +82,8 @@ export default function Home() {
           </div>
           <button className="acc-header">How do I verify coverage?</button>
           <div className="acc-body">
-            <div className="verify-coverage-content">
-              <p>Contact our office:</p>
+            <div className="verify-coverage-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.5rem' }}>
+              <p style={{ margin: 0 }}>Contact our office:</p>
               <a href="tel:2082950297" className="provider-contact">(208)295-0297</a>
             </div>
           </div>
