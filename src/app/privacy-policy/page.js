@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <div className="content-capsule" data-aos="fade-up">
+    <div className="content-capsule privacy-policy" data-aos="fade-up">
       <h2>Privacy Policy</h2>
       <p style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '0.9rem', color: 'var(--text-dark)', opacity: 0.7 }}>
         Last updated: February 2026
@@ -44,7 +44,7 @@ export default function PrivacyPolicy() {
       <h3>Google Analytics</h3>
       <p>
         We use Google Analytics to understand how visitors interact with our website. Google Analytics collects information such as how often users visit the site, what pages they visit, and what other sites they used prior to coming to our site. We use this information solely to improve our website. Google Analytics does not collect your name or other personally identifying information. You can opt out of Google Analytics by installing the{' '}
-        <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>
+        <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">
           Google Analytics Opt-out Browser Add-on
         </a>.
       </p>
@@ -74,8 +74,8 @@ export default function PrivacyPolicy() {
         If you have questions about this Privacy Policy or our privacy practices, please contact us:
       </p>
       <ul style={{ paddingLeft: '1.5rem', marginBottom: '1.5rem', lineHeight: '1.8', listStyle: 'none' }}>
-        <li><strong>Email:</strong> <a href="mailto:admin@awakeningsmentalhealth.com" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>admin@awakeningsmentalhealth.com</a></li>
-        <li><strong>Phone:</strong> <a href="tel:2082950297" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>(208) 295-0297</a></li>
+        <li><strong>Email:</strong> <a href="mailto:admin@awakeningsmentalhealth.com">admin@awakeningsmentalhealth.com</a></li>
+        <li><strong>Phone:</strong> <a href="tel:2082950297">(208) 295-0297</a></li>
         <li><strong>Address:</strong> 6126 W State St #104, Boise, ID 83703</li>
       </ul>
 

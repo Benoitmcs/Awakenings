@@ -1085,7 +1085,113 @@ html.dark .btn-provider-action:active {
   background-color: var(--bg-dark);
   color: var(--accent) !important;
 }
+/* Provider action buttons container */
+.provider-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Secondary blue button for providers page */
+.btn-provider-secondary {
+  display: inline-block;
+  background: var(--theme-blue-static);
+  color: white !important;
+  padding: 0.8rem 1.6rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color .2s, transform .2s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-provider-secondary:hover {
+  background-color: #1e2157;
+  transform: translateY(-2px);
+}
+
+.btn-provider-secondary:active {
+  background-color: var(--bg-light);
+  color: var(--theme-blue-static) !important;
+  transform: translateY(0);
+}
+
+html.dark .btn-provider-secondary {
+  background: var(--theme-blue-static);
+}
+
+html.dark .btn-provider-secondary:hover {
+  background-color: #1e2157;
+}
+
+html.dark .btn-provider-secondary:active {
+  background-color: var(--bg-dark);
+  color: var(--text-light) !important;
+}
+
 /* End of Styles for Provider Page Enhancements */
+
+/* Inline link colors for content-capsule sections */
+.content-capsule a:not(.btn):not(.btn-provider-action):not(.btn-provider-secondary):not(.provider-contact):not([download]) {
+  color: var(--accent);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.content-capsule a:not(.btn):not(.btn-provider-action):not(.btn-provider-secondary):not(.provider-contact):not([download]):hover {
+  color: #C05F3E;
+}
+
+html.dark .content-capsule a:not(.btn):not(.btn-provider-action):not(.btn-provider-secondary):not(.provider-contact):not([download]) {
+  color: var(--accent);
+}
+
+html.dark .content-capsule a:not(.btn):not(.btn-provider-action):not(.btn-provider-secondary):not(.provider-contact):not([download]):hover {
+  color: #e0825e;
+}
+
+/* Privacy policy page heading overrides */
+.privacy-policy h2,
+.privacy-policy h3,
+.privacy-policy h4 {
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+  background: none;
+  box-shadow: none;
+  border: none;
+  border-bottom: none;
+  color: var(--heading-color);
+  padding: 0;
+  border-radius: 0;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.privacy-policy h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.privacy-policy h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.privacy-policy h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+html.dark .privacy-policy h2,
+html.dark .privacy-policy h3,
+html.dark .privacy-policy h4 {
+  color: var(--text-light);
+}
 
 /* Old mobile menu styles removed - using new .mobile-menu-btn in header CSS */
 

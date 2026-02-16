@@ -1,4 +1,5 @@
 import Separator from '@/components/Separator';
+import Link from 'next/link';
 import Script from 'next/script';
 
 export const metadata = {
@@ -46,7 +47,10 @@ export default function OurProviders() {
             <div className="psychology-today-embed-wrapper">
               <a href="https://www.psychologytoday.com/profile/1226261" className="sx-verified-seal"></a>
             </div>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeeYABYxDoscWL3jH-SNU51X0hgomcb0bEqshRIUnCRg7aSgA/viewform" className="btn-provider-action" target="_blank" rel="noopener noreferrer">Book Appointment with Talia</a>
+            <div className="provider-actions">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeeYABYxDoscWL3jH-SNU51X0hgomcb0bEqshRIUnCRg7aSgA/viewform" className="btn-provider-action" target="_blank" rel="noopener noreferrer">Book Appointment with Talia</a>
+              <Link href="/privacy-policy" className="btn-provider-secondary">Privacy Policy</Link>
+            </div>
           </div>
         </section>
 
@@ -80,7 +84,10 @@ export default function OurProviders() {
             <div className="psychology-today-embed-wrapper">
               <a href="https://www.psychologytoday.com/profile/1233174" className="sx-verified-seal"></a>
             </div>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeeYABYxDoscWL3jH-SNU51X0hgomcb0bEqshRIUnCRg7aSgA/viewform" className="btn-provider-action" target="_blank" rel="noopener noreferrer">Book Appointment with Heidi</a>
+            <div className="provider-actions">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeeYABYxDoscWL3jH-SNU51X0hgomcb0bEqshRIUnCRg7aSgA/viewform" className="btn-provider-action" target="_blank" rel="noopener noreferrer">Book Appointment with Heidi</a>
+              <Link href="/privacy-policy" className="btn-provider-secondary">Privacy Policy</Link>
+            </div>
           </div>
         </section>
       </div>
