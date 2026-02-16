@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -12,6 +14,9 @@ export default function Footer() {
           Questions?{' '}
           <a href="mailto:admin@awakeningsmentalhealth.com">admin@awakeningsmentalhealth.com</a>{' '}
           <a href="tel:2082950297">(208) 295-0297</a>
+        </p>
+        <p>
+          <Link href="/privacy-policy">Privacy Policy</Link>
         </p>
       </div>
     </footer>
