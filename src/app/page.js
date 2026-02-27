@@ -59,15 +59,6 @@ export default function Home() {
                 6126 W State St #104<br />
                 Boise, ID 83703
               </address>
-              <iframe
-                className="skeleton lazy-embed map-iframe-rounded"
-                loading="lazy"
-                src="https://maps.google.com/maps?q=6126%20W%20State%20St%20%23104%2C%20Boise%2C%20ID%2083703&t=&z=17&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="260"
-                style={{ border: 0 }}
-                allowFullScreen=""
-              />
             </div>
             <div className="location-card">
               <h3>Meridian <span className="new-location-badge">New</span></h3>
@@ -75,17 +66,17 @@ export default function Home() {
                 1510 W. Ustick Rd. #110<br />
                 Meridian, Idaho 83646
               </address>
-              <iframe
-                className="skeleton lazy-embed map-iframe-rounded"
-                loading="lazy"
-                src="https://maps.google.com/maps?q=1510%20W.%20Ustick%20Rd.%20%23110%2C%20Meridian%2C%20Idaho%2083646&t=&z=17&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="260"
-                style={{ border: 0 }}
-                allowFullScreen=""
-              />
             </div>
           </div>
+          <iframe
+            className="skeleton lazy-embed map-iframe-rounded"
+            src="https://www.google.com/maps/d/u/5/embed?mid=1rGi6IQQv3jW2n45mNB9oHQ-yCnKHYkE&ehbc=2E312F"
+            width="100%"
+            height="480"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+          />
         </div>
       </section>
 

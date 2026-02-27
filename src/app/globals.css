@@ -872,6 +872,7 @@ section#location address { text-align: center; margin-top: 0.5rem; }
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 
 .location-card {
