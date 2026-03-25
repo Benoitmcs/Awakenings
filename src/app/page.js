@@ -50,7 +50,7 @@ export default function Home() {
         <div className="content-capsule">
           <h2>Our Locations</h2>
           <p className="locations-blurb">
-            We now have two convenient locations to serve you! When booking an appointment, please make sure to select the correct location for your visit. Our original Boise office is still fully active, and we&apos;re excited to be adding our new Meridian location as well for your convenience.
+            We now have two convenient locations to serve you! Your appointment location will depend on your provider — in-person visits with Heidi are held at our Boise office, while in-person visits with Talia are held at our new Meridian location.
           </p>
           <div className="locations-grid">
             <div className="location-card">
