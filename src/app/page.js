@@ -48,26 +48,35 @@ export default function Home() {
 
       <section id="location" data-aos="fade-right">
         <div className="content-capsule">
-          <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', alignItems: 'center' }}>
-            <div>
-              <h2>Our Location</h2>
-              <h3>
-                <address>
-                  6126 W State St #104<br />
-                  Boise, ID 83703
-                </address>
-              </h3>
+          <h2>Our Locations</h2>
+          <p className="locations-blurb">
+            We now have two convenient locations to serve you! Your appointment location is provider specific. In-person visits with Heidi are held at our Boise office, and in-person visits with Talia are held at our new Meridian location.
+          </p>
+          <div className="locations-grid">
+            <div className="location-card">
+              <h3>Boise</h3>
+              <address>
+                6126 W State St #104<br />
+                Boise, ID 83703
+              </address>
             </div>
-            <iframe
-              className="skeleton lazy-embed map-iframe-rounded"
-              loading="lazy"
-              src="https://maps.google.com/maps?q=6126%20W%20State%20St%20%23104%2C%20Boise%2C%20ID%2083703&t=&z=17&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="325"
-              style={{ border: 0 }}
-              allowFullScreen=""
-            />
+            <div className="location-card">
+              <h3>Meridian <span className="new-location-badge">New</span></h3>
+              <address>
+                1510 W. Ustick Rd. #110<br />
+                Meridian, Idaho 83646
+              </address>
+            </div>
           </div>
+          <iframe
+            className="skeleton lazy-embed map-iframe-rounded"
+            src="https://www.google.com/maps/d/u/5/embed?mid=1rGi6IQQv3jW2n45mNB9oHQ-yCnKHYkE&ehbc=2E312F"
+            width="100%"
+            height="480"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+          />
         </div>
       </section>
 
