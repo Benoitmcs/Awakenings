@@ -48,7 +48,7 @@ export default function OurProviders() {
               <a href="https://www.psychologytoday.com/profile/1226261" className="sx-verified-seal"></a>
             </div>
             <div className="provider-actions">
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeeYABYxDoscWL3jH-SNU51X0hgomcb0bEqshRIUnCRg7aSgA/viewform" className="btn-provider-action" target="_blank" rel="noopener noreferrer">Book Appointment with Talia</a>
+              <a href="https://sessions.psychologytoday.com/talia-sierra" className="btn-provider-action" target="_blank" rel="noopener noreferrer">Book Appointment with Talia</a>
               <Link href="/privacy-policy" className="btn-provider-secondary">Privacy Policy</Link>
             </div>
           </div>
