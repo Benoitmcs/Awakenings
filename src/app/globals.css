@@ -1025,6 +1025,27 @@ html.dark .content-capsule {
   overflow: hidden; /* Ensures the content inside respects the border-radius */
 }
 
+.map-wrapper {
+  position: relative;
+  line-height: 0; /* prevents gap below iframe */
+}
+
+/* Covers the personal info bar at the top of the Google My Maps embed */
+.map-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: var(--bg-light);
+  border-radius: 0;
+  pointer-events: none;
+}
+
+html.dark .map-cover {
+  background-color: #2c3032;
+}
+
 /* Styles for "How do I verify coverage?" accordion content */
 .verify-coverage-content {
   display: flex;
