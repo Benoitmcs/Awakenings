@@ -68,15 +68,18 @@ export default function Home() {
               </address>
             </div>
           </div>
-          <iframe
-            className="skeleton lazy-embed map-iframe-rounded"
-            src="https://www.google.com/maps/d/u/5/embed?mid=1rGi6IQQv3jW2n45mNB9oHQ-yCnKHYkE&ehbc=2E312F"
-            width="100%"
-            height="480"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-          />
+          <div className="map-wrapper">
+            <iframe
+              className="skeleton lazy-embed map-iframe-rounded"
+              src="https://www.google.com/maps/d/u/5/embed?mid=1rGi6IQQv3jW2n45mNB9oHQ-yCnKHYkE&ehbc=2E312F"
+              width="100%"
+              height="480"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+            />
+            <div className="map-cover" />
+          </div>
         </div>
       </section>
 
