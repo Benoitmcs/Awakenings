@@ -1109,7 +1109,6 @@ html.dark .provider-specialties li {
   border-radius: 5px;
   text-decoration: none;
   font-weight: 600;
-  margin-top: 1rem;
   text-align: center;
   transition: background-color .2s, opacity .3s, transform .2s;
   border: none; /* Ensure it looks like a button */
@@ -1146,7 +1145,7 @@ html.dark .btn-provider-action:active {
 .provider-actions {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
   margin-top: 1rem;
 }
