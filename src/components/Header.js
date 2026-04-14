@@ -1,9 +1,11 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Header() {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const headerRef = useRef(null);
 
@@ -46,9 +48,8 @@ export default function Header() {
         <Link href="/" className="header-brand">
           <img
             src="/images/square-logo-symbol.webp"
-            alt=""
+            alt="Awakenings Mental Health logo"
             className="header-logo"
-            aria-hidden="true"
           />
           <span className="header-title">
             <span className="header-title-main">Awakenings</span>
@@ -58,9 +59,9 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="header-nav desktop-nav" aria-label="Main navigation">
-          <Link href="/" className="nav-link">Home</Link>
-          <Link href="/our-providers" className="nav-link">Our Providers</Link>
-          <Link href="/articles" className="nav-link">Articles</Link>
+          <Link href="/" className={`nav-link${pathname === '/' ? ' active' : ''}`}>Home</Link>
+          <Link href="/our-providers" className={`nav-link${pathname === '/our-providers' ? ' active' : ''}`}>Our Providers</Link>
+          <Link href="/articles" className={`nav-link${pathname?.startsWith('/articles') ? ' active' : ''}`}>Articles</Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -85,9 +86,9 @@ export default function Header() {
         className={`mobile-nav ${mobileMenuOpen ? 'open' : ''}`}
         aria-label="Mobile navigation"
       >
-        <Link href="/" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Home</Link>
-        <Link href="/our-providers" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Our Providers</Link>
-        <Link href="/articles" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Articles</Link>
+        <Link href="/" className={`nav-link${pathname === '/' ? ' active' : ''}`} onClick={() => setMobileMenuOpen(false)}>Home</Link>
+        <Link href="/our-providers" className={`nav-link${pathname === '/our-providers' ? ' active' : ''}`} onClick={() => setMobileMenuOpen(false)}>Our Providers</Link>
+        <Link href="/articles" className={`nav-link${pathname?.startsWith('/articles') ? ' active' : ''}`} onClick={() => setMobileMenuOpen(false)}>Articles</Link>
       </nav>
     </header>
   );
