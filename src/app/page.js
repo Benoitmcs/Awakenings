@@ -8,7 +8,7 @@ export default function Home() {
       <section className="hero">
         <div className="hero-bg" aria-hidden="true"></div>
         <div className="hero-content">
-          <h1 className="hero-title">Your Journey to Wellness Starts Here</h1>
+          <h1 className="hero-title">Your Journey to Wellness Starts at <span className="hero-title-brand">Awakenings</span></h1>
           <p className="hero-subtitle">
             Personalized psychiatric care in Boise, Idaho. We specialize in treating anxiety, depression, ADHD, PTSD, and more with compassion and expertise.
           </p>
@@ -32,7 +32,7 @@ export default function Home() {
         <div className="content-capsule services-wrapper">
           <div className="services-bg-arrow" aria-hidden="true"></div>
           <section id="services" data-aos="fade-up" style={{ textAlign: 'center' }}>
-            <h2>Medication Management</h2>
+            <h2>Why Awakenings?</h2>
             <div className="content" style={{ textAlign: 'center' }}>
               <p className="page-intro" data-aos="fade-up">
                 Awakenings started in 2023 with the goal of providing better service to our patients than we could at big generic clinics. Located right off of state street, both of our providers are available for in person or for tele-health visits. Our providers are both a little bit different in their styles, but whatever your needs may be, our goal is to always provide you with the highest quality care. We specialize in treating a large variety of mental health concerns from anxiety and depression to ADHD, PTSD, and more.

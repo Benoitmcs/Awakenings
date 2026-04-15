@@ -344,13 +344,17 @@ html.dark .header {
 }
 
 .hero-title {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Inter', sans-serif;
   font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 700;
   color: white;
   margin-bottom: 1.5rem;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
   line-height: 1.2;
+}
+
+.hero-title-brand {
+  font-family: 'Dancing Script', cursive;
 }
 
 .hero-subtitle {
