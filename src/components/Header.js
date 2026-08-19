@@ -60,7 +60,8 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="header-nav desktop-nav" aria-label="Main navigation">
           <Link href="/" className={`nav-link${pathname === '/' ? ' active' : ''}`}>Home</Link>
-          <Link href="/our-providers" className={`nav-link${pathname === '/our-providers' ? ' active' : ''}`}>Our Providers</Link>
+          <Link href="/boise-office" className={`nav-link${pathname === '/boise-office' ? ' active' : ''}`}>Boise Office</Link>
+          <Link href="/meridian-office" className={`nav-link${pathname === '/meridian-office' ? ' active' : ''}`}>Meridian Office</Link>
           <Link href="/articles" className={`nav-link${pathname?.startsWith('/articles') ? ' active' : ''}`}>Articles</Link>
         </nav>
 
@@ -87,7 +88,8 @@ export default function Header() {
         aria-label="Mobile navigation"
       >
         <Link href="/" className={`nav-link${pathname === '/' ? ' active' : ''}`} onClick={() => setMobileMenuOpen(false)}>Home</Link>
-        <Link href="/our-providers" className={`nav-link${pathname === '/our-providers' ? ' active' : ''}`} onClick={() => setMobileMenuOpen(false)}>Our Providers</Link>
+        <Link href="/boise-office" className={`nav-link${pathname === '/boise-office' ? ' active' : ''}`} onClick={() => setMobileMenuOpen(false)}>Boise Office</Link>
+        <Link href="/meridian-office" className={`nav-link${pathname === '/meridian-office' ? ' active' : ''}`} onClick={() => setMobileMenuOpen(false)}>Meridian Office</Link>
         <Link href="/articles" className={`nav-link${pathname?.startsWith('/articles') ? ' active' : ''}`} onClick={() => setMobileMenuOpen(false)}>Articles</Link>
       </nav>
     </header>

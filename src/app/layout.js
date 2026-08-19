@@ -6,8 +6,18 @@ import Script from 'next/script';
 import './globals.css';
 
 export const metadata = {
-  title: 'Awakenings Mental Health',
-  description: 'Mental health services in Boise, Idaho. Medication management, psychiatric care, and compassionate treatment from experienced providers.',
+  metadataBase: new URL('https://www.awakeningsmentalhealth.com'),
+  title: 'Awakenings Mental Health | Boise & Meridian, Idaho',
+  description:
+    'Psychiatric medication management in Boise and Meridian, Idaho. In person and telehealth visits for anxiety, depression, ADHD, PTSD, and more.',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    siteName: 'Awakenings Mental Health',
+    locale: 'en_US',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({ children }) {

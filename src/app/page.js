@@ -1,5 +1,7 @@
 import TestimonialCarousel from '@/components/TestimonialCarousel';
+import OrganizationSchema from '@/components/OrganizationSchema';
 import Link from 'next/link';
+import { locations, OFFICE_HOURS, formatAddress } from '@/data/locations';
 
 export default function Home() {
   return (
@@ -10,20 +12,20 @@ export default function Home() {
         <div className="hero-content">
           <h1 className="hero-title">Your Journey to Wellness Starts at <span className="hero-title-brand">Awakenings</span></h1>
           <p className="hero-subtitle">
-            Personalized psychiatric care in Boise, Idaho. We specialize in treating anxiety, depression, ADHD, PTSD, and more with compassion and expertise.
+            Personalized psychiatric care with offices in Boise and Meridian, Idaho. We specialize in treating anxiety, depression, ADHD, PTSD, and more with compassion and expertise.
           </p>
           <div className="hero-cta">
             <a href="https://www.therapyportal.com/p/awakenings83703/" className="btn" target="_blank" rel="noopener noreferrer">
               Patient Portal
             </a>
-            <Link href="/our-providers" className="btn secondary">
-              Meet Our Providers
+            <Link href="/boise-office" className="btn secondary">
+              Find an Office
             </Link>
           </div>
           <div className="hero-badges">
             <span className="badge">Est. 2023</span>
             <span className="badge">In-Person & Telehealth</span>
-            <span className="badge">Boise, ID</span>
+            <span className="badge">Boise &amp; Meridian, ID</span>
           </div>
         </div>
       </section>
@@ -35,7 +37,7 @@ export default function Home() {
             <h2>Why Awakenings?</h2>
             <div className="content" style={{ textAlign: 'center' }}>
               <p className="page-intro" data-aos="fade-up">
-                Awakenings started in 2023 with the goal of providing better service to our patients than we could at big generic clinics. Located right off of state street, both of our providers are available for in person or for tele-health visits. Our providers are both a little bit different in their styles, but whatever your needs may be, our goal is to always provide you with the highest quality care. We specialize in treating a large variety of mental health concerns from anxiety and depression to ADHD, PTSD, and more.
+                Awakenings started in 2023 with the goal of providing better service to our patients than we could at big generic clinics. With offices in Boise and Meridian, both of our providers are available for in person or for tele-health visits. Our providers are both a little bit different in their styles, but whatever your needs may be, our goal is to always provide you with the highest quality care. We specialize in treating a large variety of mental health concerns from anxiety and depression to ADHD, PTSD, and more.
               </p>
             </div>
           </section>
@@ -50,23 +52,19 @@ export default function Home() {
         <div className="content-capsule">
           <h2>Our Locations</h2>
           <p className="locations-blurb">
-            We now have two convenient locations to serve you! Your appointment location is provider specific. In-person visits with Heidi are held at our Boise office, and in-person visits with Talia are held at our new Meridian location.
+            We have two convenient locations to serve you. Your appointment location is provider specific. In-person visits with Heidi are held at our Boise office, and in-person visits with Talia are held at our Meridian office.
           </p>
           <div className="locations-grid">
-            <div className="location-card">
-              <h3>Boise</h3>
-              <address>
-                6126 W State St #104<br />
-                Boise, ID 83703
-              </address>
-            </div>
-            <div className="location-card">
-              <h3>Meridian <span className="new-location-badge">New</span></h3>
-              <address>
-                1510 W. Ustick Rd. #110<br />
-                Meridian, Idaho 83646
-              </address>
-            </div>
+            {locations.map((location) => (
+              <div className="location-card" key={location.slug}>
+                <h3>{location.city}</h3>
+                <address>{formatAddress(location)}</address>
+                <p className="location-card-hours">{OFFICE_HOURS.display}</p>
+                <Link href={`/${location.slug}`} className="location-card-link">
+                  {location.city} office details
+                </Link>
+              </div>
+            ))}
           </div>
           <div className="map-wrapper">
             <iframe
@@ -118,6 +116,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <OrganizationSchema />
     </>
   );
 }

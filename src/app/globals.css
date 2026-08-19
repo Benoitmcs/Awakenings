@@ -893,19 +893,6 @@ section#location address { text-align: center; margin-top: 0.5rem; }
   gap: 0.4rem;
 }
 
-.new-location-badge {
-  display: inline-block;
-  background-color: var(--accent);
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 700;
-  padding: 0.1rem 0.45rem;
-  border-radius: 999px;
-  vertical-align: middle;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
 footer#contact {
     text-align:center; 
     padding: 2.5rem 1rem 2rem; /* Increased padding for better spacing with shadow */
@@ -1578,5 +1565,179 @@ html.dark .provider-profile {
   }
   .psychology-today-embed-wrapper {
     text-align: left;
+  }
+}
+
+/* ── Location pages ─────────────────────────────────────── */
+
+/*
+ * h1 previously only had a font-size rule, because every page used h2 as its
+ * visible title. Location pages lead with a real h1 carrying the location and
+ * service, so it needs the same visual treatment h2 gets.
+ */
+.page-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  color: var(--heading-color);
+  font-size: clamp(1.9rem, 3.2vw + 1rem, 2.6rem);
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  line-height: 1.2;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+.location-intro {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.location-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.location-detail-block {
+  text-align: center;
+}
+
+.location-detail-heading {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--heading-color);
+  text-align: center;
+  margin: 0 0 0.6rem;
+  padding-bottom: 0;
+  border-bottom: none;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.location-address {
+  font-style: normal;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.location-phone a {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.location-hours {
+  margin: 0 0 0.25rem;
+  line-height: 1.6;
+}
+
+.location-hours-closed {
+  opacity: 0.75;
+  font-size: 0.95rem;
+}
+
+.location-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.location-cross-link {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(128, 128, 128, 0.25);
+  line-height: 1.6;
+}
+
+/* Homepage location cards link through to the full office pages. */
+.location-card-link {
+  display: block;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.location-card-link:hover,
+.location-card-link:focus-visible {
+  text-decoration: underline;
+}
+
+.location-card-hours {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  margin-top: 0.35rem;
+  text-align: center;
+}
+
+/* Footer name/address/phone block, repeated sitewide for NAP consistency. */
+.footer-locations {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin: 0 auto 1rem;
+  max-width: 700px;
+}
+
+.footer-location {
+  text-align: center;
+  min-width: 200px;
+}
+
+.footer-location h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+
+.footer-location address {
+  font-style: normal;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/*
+ * The pill/button footer link style is scoped to .footer-text-content, so the
+ * NAP block would otherwise fall back to default browser blue. Addresses want
+ * quiet inline links, not buttons.
+ */
+.footer-location a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-location h3 a {
+  color: var(--accent);
+}
+
+.footer-location a:hover,
+.footer-location a:focus-visible {
+  text-decoration: underline;
+}
+
+.footer-hours {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  margin-top: 0.35rem;
+}
+
+@media (max-width: 600px) {
+  .location-actions .btn,
+  .location-actions .btn.secondary {
+    width: 100%;
+    max-width: 300px;
   }
 }

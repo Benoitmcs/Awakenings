@@ -1,5 +1,10 @@
 # Design & UX Audit — Awakenings Mental Health
 
+> **Status note.** Items marked **[RESOLVED - location redesign]** were fixed when the
+> site moved to a location-first structure, with `/boise-office` and `/meridian-office`
+> replacing `/our-providers`. The original finding is left in place so the audit still
+> reads as a record of what was found. Everything unmarked is still open.
+
 ---
 
 ## Typography
@@ -52,7 +57,7 @@
 
 18. **`paddingTop: '4rem'` applied as a direct inline style** on the wrapper div — inconsistent with the rest of the spacing system, hardcoded where a CSS class should be.
 
-19. **"Located right off of state street"** — "state street" is lowercase, reads like rough draft copy. Also duplicated information already shown in the Locations section.
+19. **"Located right off of state street"** — "state street" is lowercase, reads like rough draft copy. Also duplicated information already shown in the Locations section.  **[RESOLVED - location redesign]** Rewritten to "With offices in Boise and Meridian", which is also now accurate for two offices.
 
 20. **"a large variety of mental health concerns"** — informal and slightly unprofessional phrasing for a medical services description.
 
@@ -78,15 +83,15 @@
 
 27. **The `.map-cover` div** is a CSS overlay that covers the top 60px of the Google Maps embed to hide Google's personal info bar. This is a hack: it's invisible to users but breaks if Google changes the embed height, and it conceals part of the map itself in the process.
 
-28. **Address formatting is inconsistent** — the Boise address uses `W State St` (no periods) while Meridian uses `W. Ustick Rd.` (with periods). Inconsistent punctuation in published addresses.
+28. **Address formatting is inconsistent** — the Boise address uses `W State St` (no periods) while Meridian uses `W. Ustick Rd.` (with periods). Inconsistent punctuation in published addresses.  **[RESOLVED - location redesign]** Both addresses normalized to the no-period form and stored once in `src/data/locations.js`.
 
-29. **"We now have two convenient locations"** — the word "now" implies a recent announcement. This is static evergreen content on the page. Once Meridian has been open for a year, "now" will read as stale and confused.
+29. **"We now have two convenient locations"** — the word "now" implies a recent announcement. This is static evergreen content on the page. Once Meridian has been open for a year, "now" will read as stale and confused.  **[RESOLVED - location redesign]** Reworded to "We have two convenient locations to serve you."
 
-30. **"New" badge on Meridian has no expiration logic.** It will read as "New" forever unless manually removed.
+30. **"New" badge on Meridian has no expiration logic.** It will read as "New" forever unless manually removed.  **[RESOLVED - location redesign]** Badge removed from the markup and the `.new-location-badge` rule deleted from globals.css.
 
-31. **No hours of operation anywhere on the site** — not in the locations section, not in the footer, not on any page. A patient trying to call or visit has no idea when the office is open.
+31. **No hours of operation anywhere on the site** — not in the locations section, not in the footer, not on any page. A patient trying to call or visit has no idea when the office is open.  **[RESOLVED - location redesign]** Hours (Mon to Fri, 8:00am to 4:00pm) now appear on both location pages, on the homepage cards, in the footer, and in the JSON-LD `openingHoursSpecification`.
 
-32. **No "get directions" links on the location cards.** There are addresses but no Google Maps links, Apple Maps links, or driving directions.
+32. **No "get directions" links on the location cards.** There are addresses but no Google Maps links, Apple Maps links, or driving directions.  **[RESOLVED - location redesign]** Each location page has a "Get Directions" button linking to that office's Google Business Profile.
 
 ---
 
