@@ -1,7 +1,7 @@
 import TestimonialCarousel from '@/components/TestimonialCarousel';
 import OrganizationSchema from '@/components/OrganizationSchema';
 import Link from 'next/link';
-import { locations, OFFICE_HOURS, formatAddress } from '@/data/locations';
+import { locations, OFFICE_HOURS, INSURANCES, SELF_PAY_LABEL, formatAddress } from '@/data/locations';
 
 export default function Home() {
   return (
@@ -87,7 +87,15 @@ export default function Home() {
           <div className="acc-body">
             <p>
               We accept most major private insurances, however there are some exceptions. We can work out of network, but you will have to make the insurance claim yourself, so check with your insurance to make sure you will be covered.
-              Blue Cross, Select Health, Pacific Source, Saint Luke&apos;s Health Plan, Mountain Health Co-op, Anthem Blue Cross, Blue Shield, Regence, Aetna, Cash Pay
+            </p>
+            <ul className="insurance-list">
+              {INSURANCES.map((insurer) => (
+                <li key={insurer}>{insurer}</li>
+              ))}
+            </ul>
+            <p className="insurance-self-pay">
+              <strong>{SELF_PAY_LABEL}</strong> is also available if you are uninsured or
+              prefer not to bill insurance.
             </p>
           </div>
           <button className="acc-header">How do I verify coverage?</button>

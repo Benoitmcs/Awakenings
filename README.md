@@ -25,17 +25,23 @@ Because of that, two constraints apply:
 - There are **no server-side redirects.** A retired URL has to be handled with a real
   page (see `/our-providers` below), not a 301.
 
-## Editing office details
+## Editing content facts
 
-**All addresses, phone numbers, and hours live in one file: `src/data/locations.js`.**
+**Content facts live in `src/data/`, never inline in a component.**
 
-That module is the single source of truth. It feeds the location pages, the homepage
-location cards, the footer, the sitemap, and the JSON-LD structured data. Changing an
-address there updates it everywhere at once.
+- **`src/data/locations.js`** — office addresses, phones, hours, providers, accepted
+  insurances, and the booking links. Feeds the location pages, the homepage, the footer,
+  the sitemap, `llms.txt`, and the JSON-LD structured data.
+- **`src/data/articles.js`** — articles (slug, title, blurb, published date) and the
+  downloadable patient handouts. Feeds the sitemap and `llms.txt`.
 
-Do not type an address, phone number, or set of hours directly into a component. Search
-engines cross-check the site's name/address/phone against each Google Business Profile,
-and a stale copy left behind in one component is exactly how those fall out of sync.
+Changing a value in one of these updates it everywhere at once. Do not type an address,
+phone number, set of hours, or article URL directly into a component: search engines
+cross-check the site's name/address/phone against each Google Business Profile, and a
+stale copy left behind in one component is exactly how those fall out of sync.
+
+Adding an article means adding an entry to `src/data/articles.js`; it then appears in
+`sitemap.xml` and `llms.txt` automatically.
 
 ## Routes
 
@@ -49,7 +55,8 @@ and a stale copy left behind in one component is exactly how those fall out of s
 | `/privacy-policy` | `src/app/privacy-policy/page.js` | |
 | `/our-providers` | `src/app/our-providers/page.js` | Retired. See below. |
 | `/sitemap.xml` | `src/app/sitemap.js` | Generated at build |
-| `/robots.txt` | `src/app/robots.js` | Generated at build |
+| `/robots.txt` | `src/app/robots.js` | Generated at build. Explicitly allows AI crawlers |
+| `/llms.txt` | `src/app/llms.txt/route.js` | Generated at build. See below |
 
 Both location route files are thin: they export page metadata and render the shared
 `LocationPage` component with their own entry from `src/data/locations.js`.
@@ -80,6 +87,20 @@ departments so the two offices read as one practice.
 After changing any of it, paste a built page's JSON-LD into the
 [Google Rich Results Test](https://search.google.com/test/rich-results) before shipping.
 
+## llms.txt
+
+`/llms.txt` is a plain-text summary of the practice aimed at AI assistants, following the
+[llms.txt convention](https://llmstxt.org/). It inlines the facts people actually ask
+assistants about — both offices' addresses, phones and hours, who works where, insurances,
+and how to book — so a model can answer without fetching more pages.
+
+It is generated from `src/data/locations.js` and `src/data/articles.js` by
+`src/app/llms.txt/route.js`. **Do not hand-write facts into it.** If it drifts from the
+pages, assistants reading it will confidently repeat whichever version is stale.
+
+`robots.txt` names the AI crawlers explicitly and allows them. Being citable when someone
+asks an assistant "psychiatrist near me in Meridian" is the point of publishing the file.
+
 ## Project layout
 
 ```
@@ -88,7 +109,8 @@ src/
   components/     Header, Footer, LocationPage, ProviderProfile,
                   LocationSchema, OrganizationSchema, Separator, ...
   data/
-    locations.js  office + provider data (edit office details here)
+    locations.js  offices, providers, hours, insurances
+    articles.js   articles + downloadable resources
 public/
   images/  pdfs/  favicon.ico
 ```

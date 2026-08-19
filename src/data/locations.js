@@ -23,6 +23,28 @@ export const PATIENT_PORTAL_URL = 'https://www.therapyportal.com/p/awakenings837
 export const INTEREST_FORM_URL =
   'https://docs.google.com/forms/d/e/1FAIpQLSeeYABYxDoscWL3jH-SNU51X0hgomcb0bEqshRIUnCRg7aSgA/viewform';
 
+/**
+ * Accepted insurances. Rendered on the homepage and listed in llms.txt, so it
+ * lives here rather than as a string inside a component.
+ *
+ * `selfPay` is kept separate because it is not an insurer: for uninsured
+ * patients it is the relevant option, and it was previously buried at the end
+ * of the list where it read as an afterthought.
+ */
+export const INSURANCES = [
+  'Blue Cross',
+  'Select Health',
+  'Pacific Source',
+  "Saint Luke's Health Plan",
+  'Mountain Health Co-op',
+  'Anthem Blue Cross',
+  'Blue Shield',
+  'Regence',
+  'Aetna',
+];
+
+export const SELF_PAY_LABEL = 'Cash Pay';
+
 /** Mon-Fri 8:00am to 4:00pm, closed weekends. Identical at both offices. */
 export const OFFICE_HOURS = {
   days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],

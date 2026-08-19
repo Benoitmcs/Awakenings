@@ -1741,3 +1741,29 @@ html.dark .provider-profile {
     max-width: 300px;
   }
 }
+
+/*
+ * Insurance list. Was previously a run-on sentence with the insurers tacked
+ * onto the end of a paragraph (design audit item 33), which made it hard to
+ * scan for your own plan.
+ */
+.insurance-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.75rem;
+  list-style: none;
+  padding: 0 0 0.75rem;
+  margin: 0.75rem 0 0;
+}
+
+.insurance-list li {
+  background-color: rgba(217, 107, 76, 0.12);
+  border: 1px solid rgba(217, 107, 76, 0.35);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.9rem;
+}
+
+.insurance-self-pay {
+  padding-bottom: 1rem;
+}
